@@ -1,0 +1,20 @@
+<div class="pontos-wrapper">
+  <div class="pontos-card">
+    <h2 class="pontos-title">Seus pontos</h2>
+
+    <div class="semi-circle-container">
+      <div
+        class="semi-circle"
+        [style.background]="getProgressGradient()"
+      ></div>
+      <div class="circle-content">
+        <span class="pontos-numero">{{ pontos }}</span>
+        <span class="pontos-legenda">pontos</span>
+      </div>
+    </div>
+
+    <button class="btn-parceiros" (click)="verParceiros()">Ver parceiros</button>
+
+    <p class="info-text">Você acumula pontos a cada troca que fizer.</p>
+  </div>
+</div>

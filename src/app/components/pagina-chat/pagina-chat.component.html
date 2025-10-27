@@ -1,0 +1,84 @@
+<div class="container">
+  <!-- Lista de Conversas -->
+  <div *ngIf="mostrarLista" class="chat-list-view">
+    <!-- Header -->
+    <header class="page-header">
+      <button class="back-btn" (click)="goBack()">
+        <i class="fi fi-sr-arrow-left"></i>
+      </button>
+      <h1>Conversas</h1>
+    </header>
+
+    <!-- Lista de Conversas -->
+    <main class="conversations-list">
+      <div *ngFor="let conversa of conversas"
+           class="conversation-item"
+           (click)="abrirConversa(conversa)">
+        <div class="avatar">
+          <i class="fi fi-sr-user"></i>
+        </div>
+        <div class="conversation-info">
+          <h3>{{ conversa.nome }}</h3>
+          <p class="last-message">{{ conversa.ultimaMensagem }}</p>
+        </div>
+        <div class="conversation-meta">
+          <span class="timestamp">{{ formatarDataUltimaMensagem(conversa.timestamp) }}</span>
+        </div>
+      </div>
+
+      <!-- Estado vazio -->
+      <div *ngIf="conversas.length === 0" class="empty-state">
+        <div class="empty-icon"><i class="fi fi-sr-comment"></i></div>
+        <h2>Nenhuma conversa ainda</h2>
+        <p>Suas conversas aparecerão aqui quando você começar a negociar trocas!</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Conversa Individual -->
+  <div *ngIf="!mostrarLista && conversaAtual" class="chat-view">
+    <!-- Chat Header -->
+    <header class="chat-header">
+      <button class="back-btn" (click)="voltarParaLista()">
+        <i class="fi fi-sr-arrow-left"></i>
+      </button>
+      <div class="chat-user-info">
+        <div class="avatar"><i class="fi fi-sr-user"></i></div>
+        <h2>{{ conversaAtual.nome }}</h2>
+      </div>
+    </header>
+
+    <!-- Chat Messages -->
+    <main class="chat-main" #messagesContainer>
+      <div class="chat-messages">
+        <div *ngFor="let mensagem of mensagens"
+             class="message"
+             [class.sent]="mensagem.enviada"
+             [class.received]="!mensagem.enviada">
+          <div class="message-bubble">
+            <p>{{ mensagem.texto }}</p>
+            <span class="message-time">{{ formatarHora(mensagem.timestamp) }}</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Chat Input -->
+    <footer class="chat-footer">
+      <div class="chat-input-container">
+        <button class="attachment-btn" title="Anexar arquivo">
+          <i class="fi fi-sr-paperclip"></i>
+        </button>
+        <input
+          type="text"
+          class="chat-input"
+          placeholder="Digite sua mensagem..."
+          [(ngModel)]="novaMensagem"
+          (keyup.enter)="enviarMensagem()">
+        <button class="send-btn" (click)="enviarMensagem()" [disabled]="!novaMensagem.trim()">
+          <i class="fi fi-sr-paper-plane"></i>
+        </button>
+      </div>
+    </footer>
+  </div>
+</div>

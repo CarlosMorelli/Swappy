@@ -1,0 +1,23 @@
+<div class="app-dock">
+  <div class="dock-item" (click)="navigateToHome()" title="Home">
+    <div class="dock-icon"><i class="fi fi-sr-home"></i></div>
+    <span class="dock-label">Home</span>
+  </div>
+
+  <div class="dock-item" (click)="navigateToCarrinho()" title="Carrinho">
+    <div class="dock-icon"><i class="fi fi-rr-shopping-cart"></i></div>
+    <span class="dock-label">Carrinho</span>
+    <div class="cart-badge" *ngIf="cartCount > 0">{{ cartCount }}</div>
+  </div>
+
+  <div class="dock-item" (click)="navigateToChat()" title="Chat">
+    <div class="dock-icon"><i class="fi fi-rr-comment"></i></div>
+    <span class="dock-label">Chat</span>
+  </div>
+
+  <!-- Novo item: Pontos -->
+  <div class="dock-item" (click)="navigateToPontos()" title="Pontos">
+    <div class="dock-icon"><i class="fi fi-sr-star"></i></div>
+    <span class="dock-label">Pontos</span>
+  </div>
+</div>

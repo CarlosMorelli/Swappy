@@ -1,0 +1,157 @@
+<!-- Header -->
+<header class="header">
+  <nav class="nav">
+    <div class="nav-left">
+      <h1 class="logo-text">SWAPPY</h1>
+    </div>
+    <div class="nav-right">
+      <button class="login-btn" (click)="goToLogin()">
+        <i class="fi fi-sr-user login-icon"></i>
+          Login
+      </button>
+    </div>
+  </nav>
+  <!-- Barra de Pesquisa -->
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Pesquisar produtos..." (keyup)="searchProducts($event)">
+    <button class="search-btn">🔍</button>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Troque ou venda com propósito!</h1>
+      <button class="btn-primary" (click)="navigateToAnunciar()">Anunciar Produto</button>
+    </div>
+    <div class="hero-image">
+      <!-- Espaço para imagem de pessoas trocando -->
+      <div class="image-placeholder hero-illustration"></div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories">
+  <div class="category-card"
+       [class.active]="currentCategory === 'all'"
+       (click)="filterByCategory('all')">
+    <div class="category-icon"><i class="fi fi-sr-shop"></i></div>
+    <span>Todos</span>
+  </div>
+  <div class="category-card"
+       [class.active]="currentCategory === 'roupas'"
+       (click)="filterByCategory('roupas')">
+    <div class="category-icon"><i class="fi fi-sr-tshirt"></i></div>
+    <span>Roupas</span>
+  </div>
+  <div class="category-card"
+       [class.active]="currentCategory === 'eletronicos'"
+       (click)="filterByCategory('eletronicos')">
+    <div class="category-icon"><i class="fi fi-sr-laptop"></i></div>
+    <span>Eletrônicos</span>
+  </div>
+  <div class="category-card"
+       [class.active]="currentCategory === 'livros'"
+       (click)="filterByCategory('livros')">
+    <div class="category-icon"><i class="fi fi-sr-book"></i></div>
+    <span>Livros</span>
+  </div>
+</section>
+
+
+  <!-- Recent Products -->
+  <section class="products-section">
+    <div class="section-header">
+      <h2>Produtos Recentes</h2>
+      <div class="carousel-controls">
+        <button class="carousel-btn" (click)="previousPage()"><i class="fi fi-sr-arrow-left"></i></button>
+        <span class="section-count">{{currentPageIndex + 1}}/{{totalPages}}</span>
+        <button class="carousel-btn" (click)="nextPage()"><i class="fi fi-rs-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card"
+           *ngFor="let product of currentProducts"
+           (click)="openProduct(product)">
+        <div class="product-image"></div>
+        <div class="product-info">
+          <h3>{{product.name}}</h3>
+          <p class="product-type">{{product.type}}</p>
+          <p class="product-price">{{product.price}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produtos Mais Vendidos -->
+  <section class="products-section">
+    <div class="section-header">
+      <h2>🔥 Mais Vendidos</h2>
+      <div class="carousel-controls">
+        <button class="carousel-btn" (click)="previousBestsellersPage()"><i class="fi fi-sr-arrow-left"></i></button>
+        <span class="section-count">{{bestsellersPageIndex + 1}}/{{bestsellersTotal}}</span>
+        <button class="carousel-btn" (click)="nextBestsellersPage()"><i class="fi fi-rs-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card"
+           *ngFor="let product of currentBestsellers"
+           (click)="openProduct(product)">
+        <div class="product-image"></div>
+        <div class="product-info">
+          <h3>{{product.name}}</h3>
+          <p class="product-type">{{product.type}}</p>
+          <p class="product-price">{{product.price}}</p>
+          <p class="product-rating">⭐ {{product.rating}}/5.0</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produtos Melhores Avaliados -->
+  <section class="products-section">
+    <div class="section-header">
+      <h2>⭐ Melhores Avaliados</h2>
+      <div class="carousel-controls">
+        <button class="carousel-btn" (click)="previousTopRatedPage()"><i class="fi fi-sr-arrow-left"></i></button>
+        <span class="section-count">{{topRatedPageIndex + 1}}/{{topRatedTotal}}</span>
+        <button class="carousel-btn" (click)="nextTopRatedPage()"><i class="fi fi-rs-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card"
+           *ngFor="let product of currentTopRated"
+           (click)="openProduct(product)">
+        <div class="product-image"></div>
+        <div class="product-info">
+          <h3>{{product.name}}</h3>
+          <p class="product-type">{{product.type}}</p>
+          <p class="product-price">{{product.price}}</p>
+          <p class="product-rating">⭐ {{product.rating}}/5.0</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Sobre Nós</h3>
+      <p>Somos uma plataforma dedicada a facilitar trocas e vendas de produtos, promovendo o consumo consciente e a economia circular. Conectamos pessoas com propósito!</p>
+    </div>
+    <div class="footer-section">
+      <h3>Conecte-se</h3>
+      <div class="social-links">
+        <a href="https://www.instagram.com/" target="_blank" class="social-link">📷</a>
+        <a href="mailto:contato@troca.com" class="social-link">📧</a>
+        <a href="https://wa.me/5511999999999" target="_blank" class="social-link">📱</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 Troca. Todos os direitos reservados.
+  </div>
+</footer>

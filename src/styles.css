@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Reset e estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+    background: linear-gradient(135deg, #F7DC6F 0%, #F4D03F 100%);
+    min-height: 100vh;
+    color: #2C3E50;
+    line-height: 1.6;
+}
+
+/* Variáveis de cores - Design minimalista moderno */
+:root {
+    --primary-yellow: #F4D03F;
+    --secondary-yellow: #F7DC6F;
+    --accent-orange: #E67E22;
+    --primary-red: #C0392B;
+    --dark-red: #A93226;
+    --cream: #FEF9E7;
+    --light-cream: #FDEAA7;
+    --text-dark: #2C3E50;
+    --text-medium: #34495E;
+    --text-light: #7F8C8D;
+    --border-color: #D4AC0D;
+    --white: #FFFFFF;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+    
+    /* Variáveis responsivas */
+    --container-max-width: 1200px;
+    --container-padding: 20px;
+    --border-radius: 16px;
+    --border-radius-small: 12px;
+    --border-radius-xs: 8px;
+    
+    /* Espaçamentos modernos */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+}
+
+/* Botões modernos minimalistas */
+.btn-primary {
+    background: var(--accent-orange);
+    color: white;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-small);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background: #D35400;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Utilitários */
+.full-width {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}

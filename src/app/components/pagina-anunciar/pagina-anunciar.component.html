@@ -1,0 +1,119 @@
+<div class="container">
+  <!-- Header -->
+  <header class="page-header">
+    <button class="back-btn" (click)="goBack()"><i class="fi fi-sr-arrow-left"></i></button>
+    <h1>Anunciar Produto</h1>
+  </header>
+
+  <!-- Main Content -->
+  <main class="form-main">
+    <!-- Product Image Upload -->
+    <section class="image-upload-section">
+  <div class="upload-area" (click)="triggerImageUpload()">
+    <div *ngIf="!imagemPreview" class="upload-placeholder">
+      <div class="upload-icon"><i class="fi fi-sr-camera"></i></div>
+      <p class="upload-text">Clique para adicionar imagem</p>
+      <small>Formatos aceitos: JPG, PNG</small>
+    </div>
+
+    <div *ngIf="imagemPreview" class="image-preview">
+      <img [src]="imagemPreview" alt="Preview do produto">
+      <button class="remove-image-btn" (click)="removerImagem(); $event.stopPropagation()">
+        <i class="fi fi-sr-cross"></i>
+      </button>
+    </div>
+
+    <input
+      type="file"
+      accept="image/*"
+      style="display: none;"
+      id="image-upload"
+      (change)="onImageSelected($event)">
+  </div>
+</section>
+
+    <!-- Product Form -->
+    <section class="product-form">
+      <form (ngSubmit)="anunciarProduto()" #produtoForm="ngForm">
+        <div class="form-group">
+          <label>Nome do Produto *</label>
+          <input
+            type="text"
+            class="form-input"
+            placeholder="Ex: iPhone 12 Pro Max"
+            [(ngModel)]="produto.nome"
+            name="nome"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Preço *</label>
+          <input
+            type="text"
+            class="form-input"
+            placeholder="R$ 0,00"
+            [(ngModel)]="produto.preco"
+            name="preco"
+            (blur)="formatarPreco()"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Categoria *</label>
+          <select
+            class="form-select"
+            [(ngModel)]="produto.categoria"
+            name="categoria"
+            required>
+            <option value="">Selecione uma categoria</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria">
+              {{ categoria }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Descrição *</label>
+          <textarea
+            class="form-textarea"
+            placeholder="Descreva seu produto: estado de conservação, características, motivo da venda..."
+            [(ngModel)]="produto.descricao"
+            name="descricao"
+            rows="4"
+            required></textarea>
+        </div>
+
+        <div class="form-group toggle-group">
+          <label>Aceito Trocas?</label>
+          <div class="toggle-switch">
+            <input
+              type="checkbox"
+              id="aceito-trocas"
+              class="toggle-input"
+              [(ngModel)]="produto.aceitaTrocas"
+              name="aceitaTrocas">
+            <label for="aceito-trocas" class="toggle-label">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <span class="toggle-text">
+            {{ produto.aceitaTrocas ? 'Sim, aceito trocas' : 'Apenas venda' }}
+          </span>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" (click)="goBack()">
+            Cancelar
+          </button>
+          <button type="submit" class="btn-primary">
+            Anunciar Produto
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>
+
+<!-- Dock -->
+<app-dock></app-dock>
+

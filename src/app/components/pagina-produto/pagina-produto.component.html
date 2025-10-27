@@ -1,0 +1,79 @@
+<!-- Header -->
+<header class="page-header">
+  <button class="back-btn" (click)="goBack()"><i class="fi fi-sr-arrow-left"></i></button>
+  <h1>Página de Produto</h1>
+</header>
+
+<!-- Main Content -->
+<main class="product-main" *ngIf="product">
+  <!-- Product Image -->
+  <section class="product-hero">
+    <div class="product-main-image"></div>
+  </section>
+
+  <!-- Product Info -->
+  <section class="product-details">
+    <h2>{{product.name}}</h2>
+    <p class="product-type">{{product.type}}</p>
+    <p class="product-price">{{product.price}}</p>
+
+    <!-- Botões de Ação com Espaçamento -->
+    <div class="product-actions">
+      <button
+        class="btn-primary full-width"
+        *ngIf="showAddToCartButton"
+        (click)="addToCart()"
+        style="margin-bottom: 10px;">
+        Adicionar ao Carrinho
+      </button>
+      <button
+        class="btn-primary full-width"
+        *ngIf="showTradeButton"
+        (click)="goToChat()">
+        Quero trocar
+      </button>
+    </div>
+
+    <!-- Seller Info -->
+    <div class="seller-info">
+      <div class="seller-avatar"><i class="fi fi-sr-user"></i></div>
+      <div class="seller-details">
+        <h3>João Silva</h3>
+        <div class="rating">
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Description -->
+    <div class="description-section">
+      <h3>Descrição</h3>
+      <div class="description-lines">
+        <div class="description-line"></div>
+        <div class="description-line short"></div>
+      </div>
+    </div>
+
+    <!-- Similar Products -->
+    <div class="similar-products">
+      <h3>Produtos Similares</h3>
+      <div class="similar-grid">
+        <div
+          class="similar-item"
+          *ngFor="let similar of similarProducts"
+          (click)="openProduct(similar)">
+          <div class="similar-image"></div>
+          <p>{{similar.type}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Produto não encontrado -->
+<div *ngIf="!product" class="not-found">
+  <h2>Produto não encontrado</h2>
+  <button class="btn-primary" (click)="goBack()">Voltar</button>
+</div>
+
