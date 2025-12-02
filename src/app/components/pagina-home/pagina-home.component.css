@@ -6,6 +6,21 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
+.logo-img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0px;
+}
+
+/* Efeito ao passar o mouse */
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+
 .nav {
   display: flex;
   justify-content: space-between;

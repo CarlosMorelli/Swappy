@@ -217,6 +217,5 @@ export class PaginaChatComponent implements OnInit, AfterViewChecked {
   goBack() {
     this.router.navigate(['/']);
   }
-
 }
 

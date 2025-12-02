@@ -1,0 +1,42 @@
+<div class="parceiros-wrapper">
+
+  <!-- LISTA DE LOJAS -->
+  <section *ngIf="!lojaSelecionada" class="lojas-container">
+    <h2 class="titulo">Nossos Parceiros</h2>
+
+    <div class="lista-lojas">
+      <button
+        class="loja-card"
+        *ngFor="let loja of lojas"
+        (click)="selecionarLoja(loja)"
+      >
+        <img [src]="loja.logo" class="logo-loja" alt="{{ loja.nome }}">
+        <h3 class="loja-nome">{{ loja.nome }}</h3>
+      </button>
+    </div>
+  </section>
+
+  <!-- PRODUTOS DA LOJA SELECIONADA -->
+  <section *ngIf="lojaSelecionada" class="produtos-container">
+
+    <button class="voltar" (click)="voltar()">← Voltar</button>
+
+    <h2 class="titulo">{{ lojaSelecionada.nome }}</h2>
+
+    <div class="lista-produtos">
+      <div class="produto-card" *ngFor="let item of lojaSelecionada.produtos">
+
+        <div class="produto-info">
+          <h3>{{ item.nome }}</h3>
+          <p class="preco">Preço normal: R$ {{ item.preco }}</p>
+          <p class="pontos">Troque por <b>{{ item.pontos }} pontos</b></p>
+        </div>
+
+        <button class="btn-trocar">Trocar Agora</button>
+
+      </div>
+    </div>
+
+  </section>
+
+</div>

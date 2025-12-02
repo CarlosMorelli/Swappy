@@ -1,9 +1,3 @@
-<!-- Container principal da aplicação -->
-<div class="app-container">
-  <!-- Conteúdo das páginas -->
-  <router-outlet></router-outlet>
-  
-  <!-- Dock fixo na parte inferior -->
-  <app-dock></app-dock>
-</div>
+<router-outlet></router-outlet>
 
+<app-dock *ngIf="mostrarDock"></app-dock>

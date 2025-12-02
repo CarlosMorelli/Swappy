@@ -1,4 +1,6 @@
-/* Estilos básicos do componente produto */
+/* ------------------------------
+   HEADER
+------------------------------ */
 .page-header {
   display: flex;
   align-items: center;
@@ -24,30 +26,34 @@
   transform: scale(1.1);
 }
 
+/* ------------------------------
+   MAIN PRODUCT WRAPPER
+------------------------------ */
 .product-main {
   padding: 20px;
 }
 
-.product-hero {
-  margin-bottom: 32px;
-}
-
+/* ------------------------------
+   MAIN IMAGE
+------------------------------ */
 .product-main-image {
-  height: 300px;
-  background: #F7DC6F;
+  height: 320px;
   border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 64px;
-  color: #D4AC0D;
+  background-size: cover;
+  background-position: center;
+  background-color: #F7DC6F;
+  box-shadow: 0px 4px 16px rgba(0,0,0,0.12);
+  margin-bottom: 20px;
 }
 
+/* ------------------------------
+   PRODUCT DETAILS
+------------------------------ */
 .product-details h2 {
   font-size: 28px;
   font-weight: 700;
   color: #2C3E50;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .product-type {
@@ -68,6 +74,9 @@
   margin-bottom: 24px;
 }
 
+/* ------------------------------
+   BUTTONS
+------------------------------ */
 .product-actions {
   margin-bottom: 32px;
 }
@@ -90,6 +99,9 @@
   transform: translateY(-2px);
 }
 
+/* ------------------------------
+   SELLER INFO
+------------------------------ */
 .seller-info {
   display: flex;
   align-items: center;
@@ -110,6 +122,7 @@
   align-items: center;
   justify-content: center;
   font-size: 24px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.15);
 }
 
 .seller-details h3 {
@@ -124,6 +137,9 @@
   font-size: 16px;
 }
 
+/* ------------------------------
+   DESCRIPTION
+------------------------------ */
 .description-section {
   background: white;
   padding: 20px;
@@ -136,20 +152,18 @@
   font-size: 20px;
   font-weight: 600;
   color: #2C3E50;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
-.description-line {
-  height: 16px;
-  background: #F7DC6F;
-  border-radius: 8px;
-  margin-bottom: 8px;
+.description-text {
+  color: #34495E;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
-.description-line.short {
-  width: 60%;
-}
-
+/* ------------------------------
+   SIMILAR PRODUCTS SECTION
+------------------------------ */
 .similar-products {
   background: white;
   padding: 20px;
@@ -166,32 +180,48 @@
 
 .similar-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
 }
 
 .similar-item {
-  text-align: center;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.2s ease;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.08);
 }
 
 .similar-item:hover {
   transform: scale(1.05);
+  box-shadow: 0px 4px 14px rgba(0,0,0,0.12);
 }
 
 .similar-image {
   height: 120px;
-  background: #F7DC6F;
+  background-size: cover;
+  background-position: center;
   border-radius: 12px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  color: #D4AC0D;
+  margin-bottom: 12px;
 }
 
+.similar-name {
+  font-size: 14px;
+  color: #2C3E50;
+  font-weight: 600;
+}
+
+.similar-price {
+  font-size: 14px;
+  font-weight: bold;
+  color: #C0392B;
+}
+
+/* ------------------------------
+   NOT FOUND
+------------------------------ */
 .not-found {
   text-align: center;
   padding: 48px 20px;
@@ -203,23 +233,23 @@
   margin-bottom: 24px;
 }
 
-/* Responsividade */
+/* ------------------------------
+   RESPONSIVE
+------------------------------ */
 @media (max-width: 768px) {
   .product-main-image {
-    height: 200px;
-    font-size: 48px;
+    height: 220px;
   }
   
   .product-details h2 {
-    font-size: 24px;
+    font-size: 22px;
   }
-  
+
   .product-price {
-    font-size: 28px;
+    font-size: 26px;
   }
-  
+
   .similar-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-

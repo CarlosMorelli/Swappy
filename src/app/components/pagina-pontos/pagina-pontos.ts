@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-pontos',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './pagina-pontos.html',
   styleUrl: './pagina-pontos.css'
 })
@@ -13,8 +13,8 @@ export class PontosComponent {
   constructor(private router: Router) {}
 
   verParceiros() {
-    this.router.navigate(['/parceiros']);
-  }
+  this.router.navigate(['/parceiros']);
+}
 
   getProgressGradient(): string {
     const percent = Math.min(this.pontos / 1000, 1); // garante 0–1

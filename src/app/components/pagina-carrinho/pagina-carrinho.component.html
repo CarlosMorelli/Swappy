@@ -1,3 +1,4 @@
+
 <div class="container">
   <!-- Header -->
   <header class="page-header">
@@ -9,7 +10,7 @@
   <main class="cart-main">
     <!-- Carrinho Vazio -->
     <div *ngIf="itensCarrinho.length === 0" class="empty-cart">
-      <div class="empty-cart-icon"><i class="fi fi-sr-shopping-cart"></i></div>
+      <div class="empty-cart-icon">🛒</div>
       <h2>Seu carrinho está vazio</h2>
       <p>Adicione produtos para começar suas compras!</p>
       <button class="btn-primary" (click)="continuarComprando()">Continuar Comprando</button>
@@ -17,7 +18,63 @@
 
     <!-- Itens do Carrinho -->
     <div *ngIf="itensCarrinho.length > 0" class="cart-content">
-      <!-- resto do código... -->
+      <div class="cart-items">
+        <div *ngFor="let item of itensCarrinho" class="cart-item">
+          <div class="item-image">
+            <img [src]="item.produto.image" [alt]="item.produto.name">
+          </div>
+          
+          <div class="item-details">
+            <h3>{{ item.produto.name }}</h3>
+            <p class="item-price">{{ item.produto.price }}</p>
+            <p class="item-condition">{{ item.produto.condition }}</p>
+          </div>
+
+          <div class="item-controls">
+            <div class="quantity-controls">
+              <button class="qty-btn" (click)="atualizarQuantidade(item.produto.id, item.quantity - 1)">-</button>
+              <span class="quantity">{{ item.quantity }}</span>
+              <button class="qty-btn" (click)="atualizarQuantidade(item.produto.id, item.quantity + 1)">+</button>
+            </div>
+            
+            <button class="btn-details" (click)="abrirDetalhes(item.produto)">Ver Detalhes</button>
+            <button class="btn-remove" (click)="removerItem(item.produto.id)">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo do Carrinho -->
+      <div class="cart-summary">
+        <h3>Resumo do Pedido</h3>
+        
+        <div class="summary-row">
+          <span>Subtotal ({{ itensCarrinho.length }} {{ itensCarrinho.length === 1 ? 'item' : 'itens' }}):</span>
+          <span>{{ formatarPreco(totalCarrinho) }}</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Frete:</span>
+          <span *ngIf="freteGratis" class="free-shipping">GRÁTIS</span>
+          <span *ngIf="!freteGratis">{{ formatarPreco(valorFrete) }}</span>
+        </div>
+        
+        <div *ngIf="!freteGratis" class="free-shipping-info">
+          <small>Frete grátis para compras acima de R$ 100,00</small>
+        </div>
+        
+        <div class="summary-row total">
+          <span>Total:</span>
+          <span>{{ formatarPreco(getTotalComFrete()) }}</span>
+        </div>
+        
+        <button class="btn-primary full-width" (click)="finalizarCompra()">
+          Finalizar Compra
+        </button>
+        
+        <button class="btn-secondary full-width" (click)="continuarComprando()">
+          Continuar Comprando
+        </button>
+      </div>
     </div>
   </main>
 
@@ -25,9 +82,9 @@
   <div *ngIf="mostrarModal && produtoSelecionado" class="modal-overlay" (click)="fecharModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <button class="modal-close" (click)="fecharModal()">✖</button>
-
+      
       <h2>Detalhes do Produto</h2>
-
+      
       <div class="product-info-modal">
         <img [src]="produtoSelecionado.image" [alt]="produtoSelecionado.name">
         <div class="product-details">
@@ -37,7 +94,7 @@
           <p class="category">Categoria: {{ produtoSelecionado.category }}</p>
         </div>
       </div>
-
+      
       <div class="purchase-details">
         <h3>Resumo da Compra</h3>
         <div class="detail-row">
@@ -54,7 +111,7 @@
           <span>{{ formatarPreco(extrairPreco(produtoSelecionado.price) + (freteGratis ? 0 : valorFrete)) }}</span>
         </div>
       </div>
-
+      
       <button class="btn-primary full-width" (click)="finalizarCompra()">
         Finalizar Compra
       </button>
@@ -64,3 +121,4 @@
 
 <!-- Dock -->
 <app-dock></app-dock>
+

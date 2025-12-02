@@ -7,6 +7,7 @@ import { PaginaCarrinhoComponent } from './components/pagina-carrinho/pagina-car
 import { PaginaChatComponent } from './components/pagina-chat/pagina-chat.component';
 import { PaginaAnunciarComponent } from './components/pagina-anunciar/pagina-anunciar.component';
 import { PontosComponent } from './components/pagina-pontos/pagina-pontos';
+import { PaginaParceiros } from './components/pagina-parceiros/pagina-parceiros';
 
 export const routes: Routes = [
   { path: '', component: PaginaHomeComponent },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'chat', component: PaginaChatComponent },
   { path: 'anunciar', component: PaginaAnunciarComponent },
   { path: 'pontos', component: PontosComponent },
+  { path: 'parceiros', component: PaginaParceiros},
   { path: '**', redirectTo: '' }
 ];
